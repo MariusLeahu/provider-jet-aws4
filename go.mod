@@ -3,6 +3,9 @@ module github.com/crossplane-contrib/provider-jet-aws4
 go 1.17
 
 require (
+	github.com/aws/aws-sdk-go-v2 v1.16.1
+	//github.com/crossplane/provider-aws v0.25.0
+	github.com/crossplane/provider-aws v0.19.0
 	github.com/crossplane/crossplane-runtime v0.15.1-0.20220106140106-428b7c390375
 	github.com/crossplane/crossplane-tools v0.0.0-20210916125540-071de511ae8e
 	github.com/crossplane/terrajet v0.4.2
