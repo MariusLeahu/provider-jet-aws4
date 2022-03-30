@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: resources.null.aws4.jet.crossplane.io
+  name: provisionedproducts.servicecatalog.aws.jet.crossplane.io
 spec:
-  group: null.aws4.jet.crossplane.io
+  group: servicecatalog.aws.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - aws4jet
-    kind: Resource
-    listKind: ResourceList
-    plural: resources
-    singular: resource
+    - awsjet
+    kind: ProvisionedProduct
+    listKind: ProvisionedProductList
+    plural: provisionedproducts
+    singular: provisionedproduct
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -32,10 +32,11 @@ spec:
     - jsonPath: .metadata.creationTimestamp
       name: AGE
       type: date
-    name: v1alpha1
+    name: v1alpha2
     schema:
       openAPIV3Schema:
-        description: Resource is the Schema for the Resources API
+        description: ProvisionedProduct is the Schema for the ProvisionedProducts
+          API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ResourceSpec defines the desired state of Resource
+            description: ProvisionedProductSpec defines the desired state of ProvisionedProduct
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,13 +64,75 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  triggers:
+                  acceptLanguage:
+                    type: string
+                  ignoreErrors:
+                    type: boolean
+                  name:
+                    type: string
+                  notificationArns:
+                    items:
+                      type: string
+                    type: array
+                  pathId:
+                    type: string
+                  pathName:
+                    type: string
+                  productId:
+                    type: string
+                  productName:
+                    type: string
+                  provisioningArtifactId:
+                    type: string
+                  provisioningArtifactName:
+                    type: string
+                  provisioningParameters:
+                    items:
+                      properties:
+                        key:
+                          type: string
+                        usePreviousValue:
+                          type: boolean
+                        value:
+                          type: string
+                      required:
+                      - key
+                      type: object
+                    type: array
+                  region:
+                    description: Region is the region you'd like your resource to
+                      be created in.
+                    type: string
+                  retainPhysicalResources:
+                    type: boolean
+                  stackSetProvisioningPreferences:
+                    items:
+                      properties:
+                        accounts:
+                          items:
+                            type: string
+                          type: array
+                        failureToleranceCount:
+                          type: number
+                        failureTolerancePercentage:
+                          type: number
+                        maxConcurrencyCount:
+                          type: number
+                        maxConcurrencyPercentage:
+                          type: number
+                        regions:
+                          items:
+                            type: string
+                          type: array
+                      type: object
+                    type: array
+                  tags:
                     additionalProperties:
                       type: string
-                    description: A map of arbitrary strings that, when changed, will
-                      force the null resource to be replaced, re-running any associated
-                      provisioners.
                     type: object
+                required:
+                - name
+                - region
                 type: object
               providerConfigRef:
                 default:
@@ -116,11 +179,48 @@ spec:
             - forProvider
             type: object
           status:
-            description: ResourceStatus defines the observed state of Resource.
+            description: ProvisionedProductStatus defines the observed state of ProvisionedProduct.
             properties:
               atProvider:
                 properties:
+                  arn:
+                    type: string
+                  cloudwatchDashboardNames:
+                    items:
+                      type: string
+                    type: array
+                  createdTime:
+                    type: string
                   id:
+                    type: string
+                  lastProvisioningRecordId:
+                    type: string
+                  lastRecordId:
+                    type: string
+                  lastSuccessfulProvisioningRecordId:
+                    type: string
+                  launchRoleArn:
+                    type: string
+                  outputs:
+                    items:
+                      properties:
+                        description:
+                          type: string
+                        key:
+                          type: string
+                        value:
+                          type: string
+                      type: object
+                    type: array
+                  status:
+                    type: string
+                  statusMessage:
+                    type: string
+                  tagsAll:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  type:
                     type: string
                 type: object
               conditions:

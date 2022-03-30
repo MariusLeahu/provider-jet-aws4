@@ -3,11 +3,11 @@ module github.com/crossplane-contrib/provider-jet-aws4
 go 1.17
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.1
-	//github.com/crossplane/provider-aws v0.25.0
-	github.com/crossplane/provider-aws v0.19.0
+	github.com/aws/aws-sdk-go-v2 v0.23.0
 	github.com/crossplane/crossplane-runtime v0.15.1-0.20220106140106-428b7c390375
 	github.com/crossplane/crossplane-tools v0.0.0-20210916125540-071de511ae8e
+	//github.com/crossplane/provider-aws v0.25.0
+	github.com/crossplane/provider-aws v0.19.0
 	github.com/crossplane/terrajet v0.4.2
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.7.0
 	github.com/pkg/errors v0.9.1
@@ -24,6 +24,7 @@ require (
 	github.com/alecthomas/units v0.0.0-20210912230133-d1bdfacee922 // indirect
 	github.com/apparentlymart/go-textseg/v12 v12.0.0 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
+	github.com/aws/aws-sdk-go v1.37.4 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/dave/jennifer v1.4.1 // indirect
@@ -32,13 +33,14 @@ require (
 	github.com/fatih/camelcase v1.0.0 // indirect
 	github.com/fatih/color v1.12.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
+	github.com/go-ini/ini v1.46.0 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
 	github.com/go-logr/zapr v1.2.0 // indirect
 	github.com/gobuffalo/flect v0.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.5.6 // indirect
+	github.com/google/go-cmp v0.5.7 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
 	github.com/google/uuid v1.1.2 // indirect
 	github.com/googleapis/gnostic v0.5.5 // indirect
@@ -53,6 +55,7 @@ require (
 	github.com/iancoleman/strcase v0.2.0 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
