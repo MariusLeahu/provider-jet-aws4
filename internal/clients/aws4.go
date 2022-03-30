@@ -27,7 +27,7 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/crossplane-contrib/provider-jet-template/apis/v1alpha1"
+	"github.com/crossplane-contrib/provider-jet-aws4/apis/v1alpha1"
 )
 
 const (
@@ -35,7 +35,7 @@ const (
 	keyPassword = "password"
 	keyHost     = "host"
 
-	// Template credentials environment variable names
+	// AWS4 credentials environment variable names
 	envUsername = "HASHICUPS_USERNAME"
 	envPassword = "HASHICUPS_PASSWORD"
 )
@@ -48,7 +48,7 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal aws4 credentials as JSON"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -81,19 +81,19 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		if err != nil {
 			return ps, errors.Wrap(err, errExtractCredentials)
 		}
-		templateCreds := map[string]string{}
-		if err := json.Unmarshal(data, &templateCreds); err != nil {
+		aws4Creds := map[string]string{}
+		if err := json.Unmarshal(data, &aws4Creds); err != nil {
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
 		// set provider configuration
 		ps.Configuration = map[string]interface{}{
-			"host": templateCreds[keyHost],
+			"host": aws4Creds[keyHost],
 		}
 		// set environment variables for sensitive provider configuration
 		ps.Env = []string{
-			fmt.Sprintf(fmtEnvVar, envUsername, templateCreds[keyUsername]),
-			fmt.Sprintf(fmtEnvVar, envPassword, templateCreds[keyPassword]),
+			fmt.Sprintf(fmtEnvVar, envUsername, aws4Creds[keyUsername]),
+			fmt.Sprintf(fmtEnvVar, envPassword, aws4Creds[keyPassword]),
 		}
 		return ps, nil
 	}
