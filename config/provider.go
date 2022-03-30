@@ -22,6 +22,8 @@ import (
 
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+
+	"github.com/crossplane-contrib/provider-jet-aws4/config/servicecatalog"
 )
 
 const (
@@ -79,6 +81,7 @@ func GetProvider() *tjconfig.Provider {
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		// add custom config functions
+		servicecatalog.Configure,
 	} {
 		configure(pc)
 	}
