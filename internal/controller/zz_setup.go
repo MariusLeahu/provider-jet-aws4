@@ -23,6 +23,7 @@ import (
 
 	providerconfig "github.com/crossplane-contrib/provider-jet-aws4/internal/controller/providerconfig"
 	provisionedproduct "github.com/crossplane-contrib/provider-jet-aws4/internal/controller/servicecatalog/provisionedproduct"
+	provisioningartifact "github.com/crossplane-contrib/provider-jet-aws4/internal/controller/servicecatalog/provisioningartifact"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -31,6 +32,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		providerconfig.Setup,
 		provisionedproduct.Setup,
+		provisioningartifact.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

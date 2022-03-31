@@ -18,8 +18,8 @@ limitations under the License.
 
 // +kubebuilder:object:generate=true
 // +groupName=servicecatalog.aws.jet.crossplane.io
-// +versionName=v1alpha2
-package v1alpha2
+// +versionName=v1alpha1
+package v1alpha1
 
 import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -29,7 +29,7 @@ import (
 // Package type metadata.
 const (
 	CRDGroup   = "servicecatalog.aws.jet.crossplane.io"
-	CRDVersion = "v1alpha2"
+	CRDVersion = "v1alpha1"
 )
 
 var (

@@ -35,22 +35,9 @@ const (
 var IncludedResources = []string{
 
 	// Service Catalog
+	"aws_servicecatalog_provisioning_artifact$",
 	"aws_servicecatalog_provisioned_product$",
 }
-
-var skipList = []string{
-	/*	"aws_waf_rule_group$",              // Too big CRD schema
-		"aws_wafregional_rule_group$",      // Too big CRD schema
-		"aws_glue_connection$",             // See https://github.com/crossplane-contrib/terrajet/issues/100
-		"aws_mwaa_environment$",            // See https://github.com/crossplane-contrib/terrajet/issues/100
-		"aws_ecs_tag$",                     // tags are already managed by ecs resources.
-		"aws_alb$",                         // identical with aws_lb
-		"aws_alb_target_group_attachment$", // identical with aws_lb_target_group_attachment
-		"aws_iam_policy_attachment$",       // identical with aws_iam_*_policy_attachment resources.
-		"aws_iam_group_policy$",            // identical with aws_iam_*_policy_attachment resources.
-		"aws_iam_role_policy$",             // identical with aws_iam_*_policy_attachment resources.
-		"aws_iam_user_policy$",             // identical with aws_iam_*_policy_attachment resources.
-	*/}
 
 //go:embed schema.json
 var providerSchema string
@@ -76,7 +63,6 @@ func GetProvider() *tjconfig.Provider {
 		tjconfig.WithShortName("awsjet"),
 		tjconfig.WithRootGroup("aws.jet.crossplane.io"),
 		tjconfig.WithIncludeList(IncludedResources),
-		tjconfig.WithSkipList(skipList),
 		tjconfig.WithDefaultResourceFn(defaultResourceFn))
 
 	for _, configure := range []func(provider *tjconfig.Provider){

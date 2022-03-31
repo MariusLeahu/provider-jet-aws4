@@ -18,16 +18,21 @@ package servicecatalog
 
 import (
 	"github.com/crossplane/terrajet/pkg/config"
-
-	"github.com/crossplane-contrib/provider-jet-aws4/config/common"
 )
 
 // Configure adds configurations for servicecatalog group.
 func Configure(p *config.Provider) {
 
-	p.AddResourceConfigurator("aws_servicecatalog_provisioned_product", func(r *config.Resource) {
-		r.Version = common.VersionV1Alpha2
-		r.ShortGroup = "servicecatalog"
-		r.ExternalName = config.IdentifierFromProvider
-	})
+	/*	p.AddResourceConfigurator("aws_servicecatalog_provisioning_artifact", func(r *config.Resource) {
+			r.Version = common.VersionV1Alpha2
+			//r.ShortGroup = "servicecatalog"
+			r.ExternalName = config.IdentifierFromProvider
+		})
+
+		p.AddResourceConfigurator("aws_servicecatalog_provisioned_product", func(r *config.Resource) {
+			r.Version = common.VersionV1Alpha2
+			//r.ShortGroup = "servicecatalog"
+			r.ExternalName = config.IdentifierFromProvider
+		})
+	*/
 }
